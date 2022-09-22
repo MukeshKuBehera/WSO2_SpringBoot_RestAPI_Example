@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="SpringBoot_Rest_API" groupId="com.app.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/SpringBoot_Rest_API.xml</file>
+    </artifact>
+    <artifact name="SpringBoot_Rest_API_swagger" groupId="com.app.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/SpringBoot_Rest_API_swagger.yaml</file>
+    </artifact>
+    <artifact name="SpringBoot_Rest_API_metadata" groupId="com.app.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/SpringBoot_Rest_API_metadata.yaml</file>
+    </artifact>
+    <artifact name="GetAPI" groupId="com.app.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/GetAPI.xml</file>
+    </artifact>
+    <artifact name="Post_EP" groupId="com.app.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/Post_EP.xml</file>
+    </artifact>
+    <artifact name="Update_EP" groupId="com.app.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/Update_EP.xml</file>
+    </artifact>
+    <artifact name="Delete_EP" groupId="com.app.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/Delete_EP.xml</file>
+    </artifact>
+    <artifact name="GetbyID_EP" groupId="com.app.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/GetbyID_EP.xml</file>
+    </artifact>
+</artifacts>

@@ -1,0 +1,187 @@
+<!--REST API-->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/employee" name="SpringBoot_Rest_API" xmlns="http://ws.apache.org/ns/synapse">
+
+<!--GET ALL DATA-->
+    <resource methods="GET" uri-template="/emp">
+        <inSequence>
+            <log>
+                <property name="Before_Endpoint" value="Before_Endpoint"/>
+            </log>
+            <call>
+                <endpoint key="GetAPI"/>
+            </call>
+            <log>
+                <property name="After_Endpoint" value="After_Endpoint"/>
+                <property expression="json-eval($)" name="Responsepayload"/>
+            </log>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+	
+	<!--POST  ADD DATA -->
+    <resource methods="POST" uri-template="/add">
+        <inSequence>
+            <log>
+                <property name="Before_Endpoint" value="Before_Endpoint"/>
+                <property expression="json-eval($)" name="Inputpayload"/>
+            </log>
+            <call>
+                <endpoint key="Post_EP"/>
+            </call>
+            <log>
+                <property name="After_Endpoint" value="After_Endpoint"/>
+                <property expression="json-eval($)" name="Responsepayload"/>
+            </log>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+	
+	<!--PUT   UPDATE DATA-->
+    <resource methods="PUT" uri-template="/update">
+        <inSequence>
+            <log>
+                <property name="Before_Endpoint" value="Before_Endpoint"/>
+                <property expression="json-eval($)" name="Inputpayload"/>
+            </log>
+            <call>
+                <endpoint key="Update_EP"/>
+            </call>
+            <log>
+                <property name="After_Endpoint" value="After_Endpoint"/>
+                <property expression="json-eval($)" name="Responsepayload"/>
+            </log>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+	
+	<!--DELETE DATA BY USING ID -->
+    <resource methods="DELETE" uri-template="/delete/{empId}">
+        <inSequence>
+            <property expression="$ctx:uri.var.empId" name="uri.var.empId" scope="default" type="STRING"/>
+            <log>
+                <property expression="get-property('uri.var.empId')" name="uri.var.empId"/>
+            </log>
+            <call>
+                <endpoint key="Delete_EP"/>
+            </call>
+            <log>
+                <property name="After_Endpoint" value="After_Endpoint"/>
+                <property expression="json-eval($)" name="Responsepayload"/>
+            </log>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+	
+	<!--GET DATA BY USING ID-->
+    <resource methods="GET" uri-template="/getbyId/{empId}">
+        <inSequence>
+            <property expression="$ctx:uri.var.empId" name="uri.var.empId" scope="default" type="STRING"/>
+            <log>
+                <property expression="get-property('uri.var.empId')" name="uri.var.empId"/>
+            </log>
+            <call>
+                <endpoint key="GetbyID_EP"/>
+            </call>
+            <log>
+                <property name="After_Endpoint" value="After_Endpoint"/>
+                <property expression="json-eval($)" name="Responsepayload"/>
+            </log>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>
+
+
+
+====================================================END POINT======================================================================
+1.GET ENDPOINT
+
+       =========FETCHING ALL DATA============
+	   
+	   <endpoint name="GetAPI" xmlns="http://ws.apache.org/ns/synapse">
+    <http method="get" uri-template="http://localhost:9090/employee">
+        <suspendOnFailure>
+            <initialDuration>-1</initialDuration>
+            <progressionFactor>1.0</progressionFactor>
+        </suspendOnFailure>
+        <markForSuspension>
+            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+        </markForSuspension>
+    </http>
+      </endpoint>
+	  
+	  ===============FETCHING DATA BY ID======================
+	  
+	  <endpoint name="GetbyID_EP" xmlns="http://ws.apache.org/ns/synapse">
+    <http method="get" uri-template="http://localhost:9090/employee/{uri.var.empId}">
+        <suspendOnFailure>
+            <initialDuration>-1</initialDuration>
+            <progressionFactor>1.0</progressionFactor>
+        </suspendOnFailure>
+        <markForSuspension>
+            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+        </markForSuspension>
+       </http>
+      </endpoint>
+
+2.POST ENDPOINT
+
+           =============ADD DATA============
+		   
+		   <endpoint name="Post_EP" xmlns="http://ws.apache.org/ns/synapse">
+    <http method="post" uri-template="http://localhost:9090/addEmp">
+        <suspendOnFailure>
+            <initialDuration>-1</initialDuration>
+            <progressionFactor>1.0</progressionFactor>
+        </suspendOnFailure>
+        <markForSuspension>
+            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+        </markForSuspension>
+    </http>
+     </endpoint>
+3.PUT ENDPOINT
+
+          ===================UPDATE DATA ==================
+		  
+		  <endpoint name="Update_EP" xmlns="http://ws.apache.org/ns/synapse">
+    <http method="put" uri-template="http://localhost:9090/update">
+        <suspendOnFailure>
+            <initialDuration>-1</initialDuration>
+            <progressionFactor>1.0</progressionFactor>
+        </suspendOnFailure>
+        <markForSuspension>
+            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+        </markForSuspension>
+       </http>
+      </endpoint>
+	  
+	     =================UPDATE DATA BY ID=====================
+		 
+		 
+4.DELETE ENDPOINT
+
+            =====================DELETE BY ID==================
+			
+			<endpoint name="Delete_EP" xmlns="http://ws.apache.org/ns/synapse">
+    <http method="delete" uri-template="http://localhost:9090/employee/{uri.var.empId}">
+        <suspendOnFailure>
+            <initialDuration>-1</initialDuration>
+            <progressionFactor>1.0</progressionFactor>
+        </suspendOnFailure>
+        <markForSuspension>
+            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+        </markForSuspension>
+       </http>
+      </endpoint>
